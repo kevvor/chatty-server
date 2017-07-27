@@ -31,6 +31,9 @@ wss.broadcast = (data) => {
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
+  // ws.color = randomcolor();
+  // console.log(ws.color)
+
   ws.on('message', (message) => {
     const parsedMsgs = JSON.parse(message)
 
@@ -58,8 +61,6 @@ wss.on('connection', (ws) => {
     client.send(JSON.stringify(numClients));
   })
 
-  // ws.send('something');
-  // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => {
     wss.clients.forEach(function (client) {
       const numClients = {
